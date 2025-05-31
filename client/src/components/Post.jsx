@@ -19,16 +19,18 @@ export default function Post({ post }) {
   // useEffect(() => {
   //   fetchComments();
   // }, [post.id]);
-
+  const comments = Object.values(post.comments) || [];
   return (
     <div className='post'>
       <h2>{post.post}</h2>
       <div className='comments'>
-        {post.comments.map((comment, idx) => (
-          <div key={idx} className='comment'>
-            • {comment.content}
-          </div>
-        ))}
+        {comments.length
+          ? comments.map((comment, idx) => (
+              <div key={idx} className='comment'>
+                • {comment.content}
+              </div>
+            ))
+          : 'No Comments Yet'}
       </div>
       <AddComment postId={post.id} />
     </div>

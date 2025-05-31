@@ -14,6 +14,7 @@ app.post('/events', (req, res) => {
   axios.post('http://localhost:3000/events', event).catch(() => {});
   axios.post('http://localhost:3001/events', event).catch(() => {});
   axios.post('http://localhost:3002/events', event).catch(() => {});
+  axios.post('http://localhost:3003/events', event).catch(() => {});
 
   res.json({ status: 'OK' });
 });

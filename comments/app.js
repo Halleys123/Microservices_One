@@ -87,12 +87,13 @@ app.post('/posts/:id/comment', (req, res) => {
   axios.post('http://localhost:3005/events', {
     type: {
       name: 'COMMENT',
-      action: 'CREATED',
+      action: 'UPDATED',
     },
     data: {
       postId: id,
       commentId: commentId,
       content: text,
+      status: 'pending',
     },
   });
 

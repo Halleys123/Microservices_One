@@ -23,7 +23,9 @@ export default function PostList() {
 
   return (
     <div>
-      {arr.length && arr.map((post) => <Post key={post.id} post={post} />)}
+      {arr.length
+        ? arr.map((post) => <Post key={post.id} post={post} />)
+        : 'No Posts Yet'}
     </div>
   );
 }

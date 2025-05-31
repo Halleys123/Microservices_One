@@ -1,30 +1,22 @@
+// import express from 'express';
+// import bodyParser from 'body-parser';
+// import cors from 'cors';
 const express = require('express');
-const bodyParser = require('body-parser');
 const cors = require('cors');
+const bodyParser = require('body-parser');
 
 const app = express();
 
 app.use(express.json());
 app.use(bodyParser.json());
 app.use(cors());
+
 /**
- * Stores posts and their associated comments.
- * Structure:
- * {
- *   [postId]: {
- *     id: string,
- *     post: string,
- *     comments: Array<{
- *       id: string,
- *       content: string
- *     }>
- *   }
- * }
- * @type {Object.<string, { id: string, post: string, comments: Array<{ id: string, content: string, status: 'approved' | 'rejected' | 'pending' }> }>}
+ * @type {Object.<string, { id: string, post: string, comments: Object.<string, { content: string, status: 'approved' | 'rejected' | 'pending' }> }>}
  */
 const posts = {};
 
-app.post('/events', (req, res) => {
+app.post('/events', (req, _) => {
   const { type, data } = req.body;
   if (type.name == 'POST' && type.action == 'CREATED') {
     const { id, post } = data;
@@ -33,19 +25,25 @@ app.post('/events', (req, res) => {
     posts[id] = {
       id: id,
       post: post,
-      comments: [],
+      comments: {},
     };
-  } else if (type.name == 'COMMENT' && type.action == 'CREATED') {
-    const { postId, commentId, content } = data;
+  } else if (type.name == 'COMMENT' && type.action == 'UPDATED') {
+    const { postId, commentId, status } = data;
+    let { content } = data;
     const post = posts[postId];
-    post.comments.push({ id: commentId, content: content });
+
+    if (status == 'pending')
+      content = '<i>This comment is waiting moderation</i>';
+    if (status == 'rejected') content = '<b>This comment has been rejected</b>';
+
+    post.comments[commentId] = { content: content, status: status };
   } else {
     console.log('Unkown event arised');
   }
   console.log(posts);
 });
 
-app.get('/posts', (req, res) => {
+app.get('/posts', (_, res) => {
   res.json(posts);
 });
 
