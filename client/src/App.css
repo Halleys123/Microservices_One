@@ -1,0 +1,74 @@
+body {
+  margin: 0;
+  font-family: Arial, sans-serif;
+  background-color: #f3f4f6;
+}
+
+.app {
+  padding: 20px;
+}
+
+.container {
+  max-width: 600px;
+  margin: 0 auto;
+  background: white;
+  padding: 24px;
+  border-radius: 10px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+.title {
+  text-align: center;
+  color: #2563eb;
+  font-size: 26px;
+  margin-bottom: 20px;
+}
+
+.add-post,
+.add-comment {
+  display: flex;
+  gap: 10px;
+  margin-bottom: 16px;
+}
+
+.add-post input,
+.add-comment input {
+  flex: 1;
+  padding: 8px 10px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+}
+
+.add-post button,
+.add-comment button {
+  padding: 8px 16px;
+  background-color: #2563eb;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.add-post button:hover,
+.add-comment button:hover {
+  background-color: #1e40af;
+}
+
+.post {
+  border-top: 1px solid #ddd;
+  padding-top: 16px;
+  margin-top: 20px;
+}
+
+.post h2 {
+  margin: 0 0 10px;
+  font-size: 20px;
+}
+
+.comments .comment {
+  background-color: #f9fafb;
+  padding: 6px 10px;
+  margin-bottom: 4px;
+  border-left: 3px solid #93c5fd;
+  border-radius: 3px;
+}
