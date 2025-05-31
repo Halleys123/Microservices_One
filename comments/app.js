@@ -82,6 +82,7 @@ app.post('/posts/:id/comment', (req, res) => {
   commentsByPostId[id].push({
     id: commentId,
     content: text,
+    status: 'pending',
   });
 
   axios.post('http://localhost:3005/events', {
@@ -109,6 +110,10 @@ app.post('/posts/:id/comment', (req, res) => {
 
 app.post('/events', (req, res) => {
   console.log(req.body.type);
+  const { type, body } = req.body;
+  if (type.name == 'COMMENT' && type.action == 'UPDATED') {
+    commentsByPostId[body.postId].status = data.status || 'pending';
+  }
 });
 
 module.exports = app;

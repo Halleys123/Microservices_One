@@ -16,8 +16,7 @@ app.use(cors());
  */
 const posts = {};
 
-app.post('/events', (req, _) => {
-  const { type, data } = req.body;
+function handleEvent(type, data) {
   if (type.name == 'POST' && type.action == 'CREATED') {
     const { id, post } = data;
     if (posts[id]) return;
@@ -34,12 +33,32 @@ app.post('/events', (req, _) => {
 
     if (status == 'pending')
       content = '<i>This comment is waiting moderation</i>';
-    if (status == 'rejected') content = '<b>This comment has been rejected</b>';
+    if (status == 'rejected')
+      content = '<b style="color: #FF7F7F;">This comment has been rejected</b>';
 
     post.comments[commentId] = { content: content, status: status };
   } else {
     console.log('Unkown event arised');
   }
+}
+
+// Fetch and process past events on startup
+(async function () {
+  try {
+    const res = await fetch('http://localhost:3005/events');
+    if (!res.ok) throw new Error('Failed to fetch events');
+    const events = await res.json();
+    for (const event of events) {
+      handleEvent(event.type, event.data);
+    }
+  } catch (err) {
+    console.error('Error fetching events:', err.message);
+  }
+})();
+
+app.post('/events', (req, _) => {
+  const { type, data } = req.body;
+  handleEvent(type, data);
   console.log(posts);
 });
 

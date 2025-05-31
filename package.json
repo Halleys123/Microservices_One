@@ -1,0 +1,20 @@
+{
+  "displayName": "Microservice",
+  "name": "microservice",
+  "version": "1.0.0",
+  "description": "A simple microservice example",
+  "scripts": {
+    "download": "npm i concurrently && cd posts && npm install && cd ../comments && npm i && cd ../event-bus && npm i && cd ../moderation && npm i && cd ../query && npm i && cd ../client && npm i",
+    "start": "concurrently \"cd posts && npm start\" \"cd comments && npm start\" \"cd event-bus && npm start\" \"cd moderation && npm start\" \"cd query && npm start\" \"cd client && npm start\"",
+    "dev": "concurrently \"cd posts && npm run dev\" \"cd comments && npm run dev\" \"cd event-bus && npm run dev\" \"cd moderation && npm run dev\" \"cd query && npm run dev\" \"cd client && npm run dev\""
+},
+  "keywords": [
+    "microservice",
+    "example",
+    "nodejs"
+  ],
+  "author": "Arnav Chhabra",
+  "dependencies": {
+    "concurrently": "^9.1.2"
+  }
+}

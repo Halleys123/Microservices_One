@@ -26,9 +26,11 @@ export default function Post({ post }) {
       <div className='comments'>
         {comments.length
           ? comments.map((comment, idx) => (
-              <div key={idx} className='comment'>
-                • {comment.content}
-              </div>
+              <div
+                dangerouslySetInnerHTML={{ __html: '• ' + comment.content }}
+                key={idx}
+                className='comment'
+              />
             ))
           : 'No Comments Yet'}
       </div>
