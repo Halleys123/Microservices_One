@@ -85,18 +85,20 @@ app.post('/posts/:id/comment', (req, res) => {
     status: 'pending',
   });
 
-  axios.post('http://localhost:3005/events', {
-    type: {
-      name: 'COMMENT',
-      action: 'UPDATED',
-    },
-    data: {
-      postId: id,
-      commentId: commentId,
-      content: text,
-      status: 'pending',
-    },
-  });
+  axios
+    .post('http://localhost:3005/events', {
+      type: {
+        name: 'COMMENT',
+        action: 'UPDATED',
+      },
+      data: {
+        postId: id,
+        commentId: commentId,
+        content: text,
+        status: 'pending',
+      },
+    })
+    .catch((err) => {});
 
   return res.json({
     message: 'Your comment was added successfuly',

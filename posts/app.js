@@ -46,13 +46,15 @@ app.post('/posts', (req, res) => {
     post: post.trim(),
   };
 
-  axios.post('http://localhost:3005/events', {
-    type: {
-      name: 'POST',
-      action: 'CREATED',
-    },
-    data: posts[postId],
-  });
+  axios
+    .post('http://localhost:3005/events', {
+      type: {
+        name: 'POST',
+        action: 'CREATED',
+      },
+      data: posts[postId],
+    })
+    .catch((err) => {});
 
   return res.status(201).json({
     message: 'Comment added successfully',

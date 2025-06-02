@@ -18,18 +18,20 @@ app.post('/events', async (req, res) => {
         status = 'rejected';
       }
 
-      await axios.post('http://localhost:3005/events', {
-        type: {
-          name: 'COMMENT',
-          action: 'UPDATED',
-        },
-        data: {
-          postId: data.postId,
-          commentId: data.commentId,
-          content: data.content,
-          status,
-        },
-      });
+      await axios
+        .post('http://localhost:3005/events', {
+          type: {
+            name: 'COMMENT',
+            action: 'UPDATED',
+          },
+          data: {
+            postId: data.postId,
+            commentId: data.commentId,
+            content: data.content,
+            status,
+          },
+        })
+        .catch((err) => {});
     }
   }
 
