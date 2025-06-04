@@ -47,7 +47,7 @@ app.post('/posts', (req, res) => {
   };
 
   axios
-    .post('http://localhost:3005/events', {
+    .post('http://event-bus-custom-ip:3005/events', {
       type: {
         name: 'POST',
         action: 'CREATED',
