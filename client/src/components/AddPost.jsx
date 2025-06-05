@@ -4,7 +4,7 @@ export default function AddPost() {
   const [postTitle, setPostTitle] = useState('');
 
   async function handleAddPost() {
-    const request = await fetch('http://localhost:3000/posts', {
+    const request = await fetch('http://localhost:30994/posts', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',

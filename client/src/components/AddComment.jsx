@@ -8,7 +8,7 @@ export default function AddComment({ postId }) {
       return;
     }
     const request = await fetch(
-      `http://localhost:3001/posts/${postId}/comment`,
+      `http://localhost:30932/posts/${postId}/comment`,
       {
         method: 'POST',
         headers: {
