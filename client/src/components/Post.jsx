@@ -22,7 +22,7 @@ export default function Post({ post }) {
   const comments = Object.values(post.comments) || [];
   return (
     <div className='post'>
-      <h2>{post.post}</h2>
+      <h2>{post.post}!!</h2>
       <div className='comments'>
         {comments.length
           ? comments.map((comment, idx) => (

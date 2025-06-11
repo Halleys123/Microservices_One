@@ -7,16 +7,13 @@ export default function AddComment({ postId }) {
       alert('Comment cannot be empty');
       return;
     }
-    const request = await fetch(
-      `http://localhost:30932/posts/${postId}/comment`,
-      {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify({ text: comment }),
-      }
-    );
+    const request = await fetch(`http://posts.com/posts/${postId}/comment`, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({ text: comment }),
+    });
     const data = await request.json();
     setComment('');
     if (!request.ok) {

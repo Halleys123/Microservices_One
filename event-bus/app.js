@@ -15,10 +15,12 @@ app.post('/events', (req, res) => {
 
   eventList.push(event);
 
+  console.log(event);
+
   axios.post('http://posts-custom-ip:3000/events', event).catch(() => {});
-  axios.post('http://localhost:3001/events', event).catch(() => {});
-  axios.post('http://localhost:3002/events', event).catch(() => {});
-  axios.post('http://localhost:3003/events', event).catch(() => {});
+  axios.post('http://comments-custom-ip:3001/events', event).catch(() => {});
+  axios.post('http://query-custom-ip:3002/events', event).catch(() => {});
+  axios.post('http://moderation-custom-ip:3003/events', event).catch(() => {});
 
   res.json({ status: 'OK' });
 });

@@ -1,30 +1,30 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: event-bus-deployment
+  name: client-deployment
 spec:
   replicas: 1
   selector:
     matchLabels:
-      app: event-bus
+      app: client
   template:
     metadata:
       labels:
-        app: event-bus
+        app: client
     spec:
       containers:
-        - name: event-bus
-          image: arnavchhabra/event-bus
+        - name: client
+          image: arnavchhabra/client
 ---
 apiVersion: v1
 kind: Service
 metadata:
-  name: event-bus-custom-ip
+  name: client-custom-ip
 spec:
   selector:
-    app: event-bus
+    app: client
   ports:
-    - name: event-bus
+    - name: client
       protocol: TCP
-      targetPort: 3005
-      port: 3005
+      targetPort: 5173
+      port: 5173

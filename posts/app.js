@@ -32,7 +32,7 @@ app.get('/posts', (req, res) => {
     post: posts,
   });
 });
-app.post('/posts', (req, res) => {
+app.post('/posts/create', (req, res) => {
   const { post } = req.body;
   if (!post || post.trim() === '') {
     return res

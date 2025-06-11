@@ -4,7 +4,7 @@ import Post from './Post';
 export default function PostList() {
   const [data, setData] = useState({});
   async function fetchPosts() {
-    const response = await fetch('http://localhost:30702/posts');
+    const response = await fetch('http://posts.com/posts');
     if (!response.ok) {
       console.error('Failed to fetch posts');
       return;

@@ -45,7 +45,7 @@ function handleEvent(type, data) {
 // Fetch and process past events on startup
 (async function () {
   try {
-    const res = await fetch('http://localhost:3005/events');
+    const res = await fetch('http://event-bus-custom-ip:3005/events');
     if (!res.ok) throw new Error('Failed to fetch events');
     const events = await res.json();
     for (const event of events) {

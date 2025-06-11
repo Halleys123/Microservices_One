@@ -1,30 +1,30 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: event-bus-deployment
+  name: query-deployment
 spec:
   replicas: 1
   selector:
     matchLabels:
-      app: event-bus
+      app: query
   template:
     metadata:
       labels:
-        app: event-bus
+        app: query
     spec:
       containers:
-        - name: event-bus
-          image: arnavchhabra/event-bus
+        - name: query
+          image: arnavchhabra/query
 ---
 apiVersion: v1
 kind: Service
 metadata:
-  name: event-bus-custom-ip
+  name: query-custom-ip
 spec:
   selector:
-    app: event-bus
+    app: query
   ports:
-    - name: event-bus
+    - name: query
       protocol: TCP
-      targetPort: 3005
-      port: 3005
+      targetPort: 3002
+      port: 3002

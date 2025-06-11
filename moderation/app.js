@@ -19,7 +19,7 @@ app.post('/events', async (req, res) => {
       }
 
       await axios
-        .post('http://localhost:3005/events', {
+        .post('http://event-bus-custom-ip:3005/events', {
           type: {
             name: 'COMMENT',
             action: 'UPDATED',
